@@ -1,15 +1,20 @@
+
 import random
 import turtle
 
-#number guess
-
+#numguess
 def numguess():
     condition="no"
     number=random.randint(0,100)
     attcount=0
     while condition=="no":
         attcount=attcount+1
-        guess=int(input("guess the number."))
+        while(True):
+            try:
+                guess=int(input("guess the number.").strip())
+                break
+            except ValueError:
+                print("try again, put a number")
         if guess>number:
             print(f"the number {guess} is bigger than the number")
         elif guess<number:
@@ -19,71 +24,156 @@ def numguess():
             condition="yes"
             break
 
-#rock paper scissors
+#rockpaperscissors
 def rockpaperscissors():
-    computerrps=random.choice(["rock","paper","scissors"])
-    playerrps=input("rock, paper, or scissors.")
-    if playerrps==computerrps:
-        print("tie")
-    elif (playerrps=="rock" and computerrps=="scissors")or(playerrps=="scissors" and computerrps=="paper")or(playerrps=="paper" and computerrps=="rock"):
-        print(f"you chose {playerrps}, which beats {computerrps}, you won!")
-    elif (playerrps=="scissors" and computerrps=="rock")or(playerrps=="paper" and computerrps=="scissors")or(playerrps=="rock" and computerrps=="paper"):
-        print(f"you chose {playerrps}, which is absolutely and utterly inferior to {computerrps}, you lost, loser!")
-    else :
-        print("the computer got mad because you didn't input a proper action, you lost.")
-
-#rand16int
-def rand16int():
-    i1=random.randint(0,9)
-    i2=random.randint(0,9)
-    i3=random.randint(0,9)
-    i4=random.randint(0,9)
-    i5=random.randint(0,9)
-    i6=random.randint(0,9)
-    i7=random.randint(0,9)
-    i8=random.randint(0,9)
-    i9=random.randint(0,9)
-    i10=random.randint(0,9)
-    i11=random.randint(0,9)
-    i12=random.randint(0,9)
-    i13=random.randint(0,9)
-    i14=random.randint(0,9)
-    i15=random.randint(0,9)
-    i16=random.randint(0,9)
-    print(f"{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}{i15}{i16}")
-    rand=f"{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}{i15}{i16}"
-
-#strand
-def strand():
-    strand=hash(rand16int())
+    while True:
+        computerrps=random.choice(["rock","paper","scissors"])
+        playerrps=input("rock, paper, or scissors.").strip().lower()
+        if playerrps==computerrps:
+            print("tie")
+            break
+        elif (playerrps=="rock" and computerrps=="scissors")or(playerrps=="scissors" and computerrps=="paper")or(playerrps=="paper" and computerrps=="rock"):
+            print(f"you chose {playerrps}, which beats {computerrps}, you won!")
+            break
+        elif (playerrps=="scissors" and computerrps=="rock")or(playerrps=="paper" and computerrps=="scissors")or(playerrps=="rock" and computerrps=="paper"):
+            print(f"you chose {playerrps}, which is absolutely and utterly inferior to {computerrps}, you lost, loser!")
+            break
+        else :
+            print("please try again")
 
 #shapegen
-def turtl():
+def shapegen():
+    def inputvalercatchturt(prompt):
+        while True:
+            try:
+                return int(input(prompt).strip())
+            except ValueError as e:
+                print(f'{e} is not an integer, try again.')
     turt=turtle.Turtle()
-    turt.color(str(input("input the color here.")))
-    turt.pensize(int(input("insert a number between 1 to 5 for the size")))
-    turt.speed(int(input("pick a number from 1 to 10 for the size, use 0 for the fastest speed.")))
-    n=int(input("pick a shape using the amount of corners it has. eg. 4 for square."))
-    size=int(input("pick a coeficient to be used for the size."))
-    turnhowmuch=n-2
-    turnhowmuchfi=turnhowmuch*180/n
+    while True:
+        try:
+            turt.color(str(input("input the color here.").strip().lower()))
+            break
+        except turtle.TurtleGraphicsError as e:
+            print(f'sorry, {e} is not a proper color. try again.')
+    turt.width(inputvalercatchturt("input the line's width : "))
+    turt.speed(inputvalercatchturt("set the speed from 0-10, 0 is the fastest: "))
+    size = inputvalercatchturt("pick a coefficient for the size : ")
+    n = inputvalercatchturt("input n of n-gons : ")
+    turnhowmuchfinal=360/n
     it=0
     while it<n:
         it=it+1
         turt.forward(size*10)
-        turt.right(turnhowmuchfi)
+        turt.right(turnhowmuchfinal)
 
-while True:
-    chosengame=input("welcome. pick between numguess and rockpaperscissors and rand16int and strand and turtle. \nuse ng/rps/16/str/t")
-    if chosengame=="ng":
-        numguess()
-    elif chosengame=="rps":
-        rockpaperscissors()
-    elif chosengame=="16":
-        rand16int()
-    elif chosengame=="str":
-        strand()
-    elif chosengame=="t":
-        turtl()
-    else :
-        print("urm, did you hear me? input the proper stuff.")
+#above are old programs
+#from this point on, the programs are new and better.
+
+#salaman
+def salaman():
+    nama = input("masukkan namamu:")
+    salam = "selamat pagi "
+    Response = salam + nama
+    print(Response)
+    while True:
+        try:
+            tahun = int(input("masukkan tahun lahir:").strip())
+            break
+        except ValueError:
+            print("coba lagi")
+    hasil_umur = 2025-tahun
+    print(f'Kamu tahun ini berumur {str(hasil_umur)} tahun kan?')
+    alamat = input("alamatmu apa ya?")
+    print(f'alamatmu {alamat} ya? cukup jauh ya dari sekolah!')
+
+#kalkulator
+def kalkulator():
+    print("\nKalkulator sederhana")
+    print("<<hanya menerima bilangan bulat!>>")
+    print("________________________________")
+
+    def valerinput(tbc,counter):
+        while(True):
+            try:
+                tbc=int(input(f'Masukkan angka {counter}: ').strip())
+                return tbc
+            except ValueError:
+                print("try again. I think you put a space or some dumb characters in there. absolutely numbers only bro")
+
+    num1=valerinput(0,"pertama")
+    num2=valerinput(0,"kedua")
+    hasil = 0
+
+    print("_ _")
+    operasi=input("masukkan operasi (+,-,*,/)").strip()
+    print('\n ________________________________')
+    if operasi=="+":
+        hasil = num1+num2
+    elif operasi=="-":
+        hasil= num1-num2
+    elif operasi=="*":
+        hasil = num1*num2
+    elif operasi == "/":
+        try:
+            hasil = round(num1/num2)
+        except ZeroDivisionError:
+            hasil="Dividing zero with zero does not make sense at all. To put it simply, imagine trying to find out how many 0s it would take to make a 0. How are you supposed to do that? every single number multiplied by zero is 0 anyways, which would mean that 0/0 is every single number to exist, something that makes absolutely no sense.\nSo please, insert something else. here's your punishment for doing that to this innocent program bro, i knew you just wanted to error me, but not today.\nthe result is Not a number."
+    else:
+        print("ERRORRRRR broh, masukkin + - * /. Gini deh, balik aja lu ke awal.")
+        kalkulator()
+    print(f'Hasil dari {num1}{operasi}{num2} adalah {hasil}\n')
+
+#gambling
+def gamble():
+    money = 100
+    while True:
+        print(f'there is {money} pypiahs in your bank account. \nhow much money would you like to gamble today?')
+        while True:
+            try:
+                gambledmoney=int(input("insert the amount of money to gamble : "))
+                if gambledmoney<=money:
+                    break
+                elif gambledmoney>money:
+                    print("try again.")
+            except ValueError:
+                print(f'try again.')
+        gamblingmult = random.randint(1,10)
+        finalgamblingmult = gamblingmult * random.choice([-1,-1,1])
+        finalgamblingresult = gambledmoney * finalgamblingmult
+        money = finalgamblingresult + money
+        if finalgamblingmult<0:
+            print(f'you lost {finalgamblingresult} money!')
+        elif finalgamblingmult>0:
+            print(f'you won {finalgamblingresult} money!')
+        if money<=0:
+            print('you lost all your money.')
+            break
+
+
+#pemilih program
+def choicer():
+    try:
+        while(True):
+            choice=input("pilih salaman atau kalkulator atau numguess atau rps atau shapegen atau gamble. .\nGunakan Q untuk keluar.\n").lower().strip()
+            if choice==("kalkulator"):
+                kalkulator()
+            if choice==("salaman"):
+                salaman()
+            if choice==("numguess"):
+                numguess()
+            if choice==("rps"):
+                rockpaperscissors()
+            if choice==("shapegen"):
+                shapegen()
+            if choice == "gamble":
+                gamble()
+            if choice==("q"):
+                print("bye.")
+                break
+            elif choice not in ["kalkulator", "salaman","numguess","rps","shapegen"]:
+                print("._.")
+    except KeyboardInterrupt:
+        print("\nbye byeeee")
+
+choicer()
