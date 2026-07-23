@@ -1,14 +1,16 @@
-
 import random
 import turtle
+from datetime import datetime
 
 #numguess
 def numguess():
+    smallest_number = 0
+    biggest_number = 100
     condition="no"
-    number=random.randint(0,100)
+    number=random.randint(smallest_number,biggest_number)
     attcount=0
     while condition=="no":
-        attcount=attcount+1
+        attcount+=1
         while(True):
             try:
                 guess=int(input("guess the number.").strip())
@@ -63,7 +65,7 @@ def shapegen():
     turnhowmuchfinal=360/n
     it=0
     while it<n:
-        it=it+1
+        it+=1
         turt.forward(size*10)
         turt.right(turnhowmuchfinal)
 
@@ -82,7 +84,8 @@ def salaman():
             break
         except ValueError:
             print("coba lagi")
-    hasil_umur = 2025-tahun
+    # Ricco from july 17th 2026, you should futureproof this.
+    hasil_umur = datetime.now().year-tahun
     print(f'Kamu tahun ini berumur {str(hasil_umur)} tahun kan?')
     alamat = input("alamatmu apa ya?")
     print(f'alamatmu {alamat} ya? cukup jauh ya dari sekolah!')
@@ -155,24 +158,24 @@ def gamble():
 def choicer():
     try:
         while(True):
-            choice=input("pilih salaman atau kalkulator atau numguess atau rps atau shapegen atau gamble. .\nGunakan Q untuk keluar.\n").lower().strip()
-            if choice==("kalkulator"):
+            choice=input("pilih antara:\n 1. salaman[S]\n 2. kalkulator[K]\n 3. numguess[N]\n 4. rps[R]\n 5. shapegen[E]\n 6. gamble[G]\nPilih dengan memasukkan huruf atau angka.\nGunakan Q untuk keluar.\n").lower().strip()
+            if choice in ["kalkulator", "k", "2"]:
                 kalkulator()
-            if choice==("salaman"):
+            elif choice in ["salaman", "s", "1"]:
                 salaman()
-            if choice==("numguess"):
+            elif choice in ["numguess", "n", "3"]:
                 numguess()
-            if choice==("rps"):
+            elif choice in ["rps", "r", "4"]:
                 rockpaperscissors()
-            if choice==("shapegen"):
+            elif choice in ["shapegen", "e", "5"]:
                 shapegen()
-            if choice == "gamble":
+            elif choice in ["gamble", "g", "6"]:
                 gamble()
-            if choice==("q"):
+            elif choice==("q"):
                 print("bye.")
                 break
-            elif choice not in ["kalkulator", "salaman","numguess","rps","shapegen"]:
-                print("._.")
+            else:
+                print("tf happened")
     except KeyboardInterrupt:
         print("\nbye byeeee")
 
