@@ -158,24 +158,24 @@ def gamble():
 def choicer():
     try:
         while(True):
-            choice=input("pilih salaman atau kalkulator atau numguess atau rps atau shapegen atau gamble. .\nGunakan Q untuk keluar.\n").lower().strip()
-            if choice==("kalkulator"):
+            choice=input("pilih antara:\n 1. salaman[S]\n 2. kalkulator[K]\n 3. numguess[N]\n 4. rps[R]\n 5. shapegen[E]\n 6. gamble[G]\nPilih dengan memasukkan huruf atau angka.\nGunakan Q untuk keluar.\n").lower().strip()
+            if choice in ["kalkulator", "k", "2"]:
                 kalkulator()
-            if choice==("salaman"):
+            elif choice in ["salaman", "s", "1"]:
                 salaman()
-            if choice==("numguess"):
+            elif choice in ["numguess", "n", "3"]:
                 numguess()
-            if choice==("rps"):
+            elif choice in ["rps", "r", "4"]:
                 rockpaperscissors()
-            if choice==("shapegen"):
+            elif choice in ["shapegen", "e", "5"]:
                 shapegen()
-            if choice == "gamble":
+            elif choice in ["gamble", "g", "6"]:
                 gamble()
-            if choice==("q"):
+            elif choice==("q"):
                 print("bye.")
                 break
-            elif choice not in ["kalkulator", "salaman","numguess","rps","shapegen"]:
-                print("._.")
+            else:
+                print("tf happened")
     except KeyboardInterrupt:
         print("\nbye byeeee")
 
